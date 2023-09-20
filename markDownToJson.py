@@ -3,9 +3,9 @@ import json
 
 """
 ------------------------------------------------------
-Without use Markdown or External Library File 
+Without using Markdown or External Library File 
 ------------------------------------------------------
-Functions List
+List of Functions
 __main__ = main function
 markdown_to_Html -> to convert .md to html content
 clean_html -> to clean html content
@@ -33,7 +33,7 @@ def markdown_To_Html(em_str,lines):
         h_line="<h"+str(heading)+">"+line[heading+1:-1]+"</h"+str(heading)+">"
         return h_line
 
-    #function to identify oderwd and unordered list
+    #function to identify ordered and unordered list
     def get_list(line):
         line=line.strip("+").strip(" ").strip("\n").strip("-").strip("*").strip("1").strip("2").strip("3")
         return "\n<li>"+line+"</li>"
@@ -66,7 +66,7 @@ def markdown_To_Html(em_str,lines):
         return "<img src=\""+path+"\" alt=\""+alt_text+"\" title=\""+title+"\"/>"
 
 
-    # to get parse anchor tag element
+    # to parse anchor tag element
     def get_href(line):
         # line=line.split(" ")
         text = ""
@@ -94,7 +94,7 @@ def markdown_To_Html(em_str,lines):
 
         return "<a href=\""+src+"\">"+text+"</a>"
 
-    # to get paragraph tag
+    # to get <p> paragraph tag
     def getline(line):
         line=line.strip(" ").rstrip(" ")
         em=""
@@ -196,6 +196,17 @@ def markdown_To_Html(em_str,lines):
 
 
 def html_To_Json(htmlcontent):
+
+    json_data = {
+        "html_content": htmlcontent
+    }
+    print(json_data)
+
+    return json_data
+
+
+""" 'tried classifing futher into individual object'
+
     # regex to identify the opening and closing tags
     opening_tag = re.compile('^<[a-zA-Z]')
     closing_tag = re.compile(('>$' or '/>$' or '^</'))
@@ -239,11 +250,12 @@ def html_To_Json(htmlcontent):
 
     result = " ".join(htmlCon)
 
-    json_data = "{ html :" + result + "}"
+    json_data = "{ html :" + result + "}" 
 
     print(json_data)
 
     return json_data
+"""
 
 
 
@@ -268,7 +280,7 @@ if __name__ == '__main__':
 
     # input file and output file
     input_file_name = "assesment.md"
-    output_file_name = "json_data2.json"
+    output_file_name = "json_data.json"
 
     try:
         with open(input_file_name, "r") as file1:
